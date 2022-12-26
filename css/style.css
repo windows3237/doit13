@@ -1,0 +1,250 @@
+@charset "utf-8";
+@import url("https://fonts.googleapis.com/css?family=Orbitron&display=swap");
+
+/* reset */
+* {
+	margin: 0px;
+	padding: 0px;
+}
+ul,
+ol,
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+
+body {
+	background: #efefef;
+}
+
+header {
+	width: 400px;
+	height: 100%;
+	background: linear-gradient(45deg, aqua, royalblue);
+	position: fixed; /* 좌우배치인데 float가 아닌 이유 : 오른쪽 main 이 스크롤링을 해도 좌측 header는 제자리를 지켜야 하므로 */
+	top: 0px;
+	left: 0px;
+}
+main {
+	margin-left: 400px; /* 전체크기를 잡기 애매하므로 아예 너빗값 없이 왼쪽 여백(헤더영역 사이즈만큼) 추가*/
+	box-sizing: border-box;
+	padding: 20px;
+}
+
+header h1 {
+	font: bold 50px/1 'orbitron';
+	color: #fff;
+	letter-spacing: 1px;
+	position: absolute;
+	left: 50px;
+	top: 50%;
+	transform: translateY(-150%);
+}
+header h1::before {
+	content: 'UI/UX DEVELOPMENT'; /* 사실 이런 식으로 하는 건 좀 그렇고 이렇게도 된다는 예시일 뿐! */
+	display: block;
+	font: 14px/1 'orbitron';
+	color: #fff;
+	letter-spacing: 2px;
+	position: absolute;
+	left: 0px;
+	top: 140px; /* 높이0은 h1의 최상단이니 글자 위라 높이지정 가능 */
+	opacity: 0.8;
+}
+header h1::after {
+	content: '';
+	display: block;
+	width: 150px;
+	height: 2px;
+	background: #fff;
+	margin-top: 20px;
+}
+header ul {
+	position: absolute;
+	left: 40px;
+	bottom: 100px;
+}
+header ul li {
+	float: left;
+	margin-right: 10px;
+}
+header ul li a {
+	font-size: 20px;
+	color: #fff;
+}
+header ul li a span {
+	display: inline-block;
+	font-weight: bold;
+	opacity: 0.7;
+	transform: scale(0.7) translateX(-10px); /* 70% 축소하고 왼쪽으로 10 밀기 -> 왜 font size로 조정하지 않는가 그러면 아이콘과 세로정렬이 틀어지기 때문에 < 맞네! */
+}
+
+/* section */
+main section {
+	width: 100%;
+}
+main section::after { /* float 시키기 위해 부모요소 리셋 */
+	content: '';
+	display: block;
+	clear: both;
+}
+main section article {
+	width: 20%;
+	float: left;
+	box-sizing: border-box;
+	padding: 12px;
+}
+main section article div {
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	border-radius: 4px;
+	box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+	padding: 14px;	
+}
+main section article div img {
+	width: 100%; /* 이미지 100%를 하면 대체로 정리가 되네 왜일가... */
+}
+
+main section article div h2 {
+	margin-top: 15px;
+	font: bold 11px/1 'orbitron';
+	letter-spacing: 1px;
+	color: #444;
+	margin-bottom: 5px;
+}
+main section article div p {
+	font: 10px/1.2 'arial';
+	color: #777;
+	margin-bottom: 15px;
+}
+
+
+main ul {
+	width: 100%;
+	margin-bottom: 10px;
+	margin-right: 20px;
+}
+main ul::after {
+	content: '';
+	display: block;
+	clear: both;
+}
+main ul li {
+	float: right;
+	margin-right: 20px;
+	width: 100px;
+	height: 26px;
+}
+main ul li a {
+	display: block;
+	width: 100%;
+	height: 100%;
+	font: bold 7px/26px 'orbitron';
+	color: #aaa;
+	letter-spacing: 1px;
+	text-align: center;
+	border-radius: 5px;
+	box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+	background: #fff;
+}
+main ul li.on a {
+	background: linear-gradient(45deg, #67faf3, #58abf8);
+	box-shadow: 0px 5px 20px rgba(0, 255, 266, 0.527);
+	color: #fff;
+}
+
+
+
+
+
+
+/* 브라우저 사이즈에 맞추기 ~반응형 노가다~ */
+@media screen and (max-width:1599px) { /* 1600 미만 */
+	header {
+		width: 350px;
+	}
+	main {
+		margin-left: 350px;
+	}
+	main section article {
+		width: 25%;
+	}
+}
+
+@media screen and (max-width:1199px) { /* 1200 미만 */
+	header {
+		width: 100%;
+		height: 80px;
+		position: relative;
+	}
+	header h1 {
+		font: bold 24px/1 'orbitron';
+		transform: translateY(-50%);
+	}
+	header h1::before, header h1::after {
+		display: none;
+	}
+	header ul {
+		left: 83%;
+		bottom: 25px;
+	}
+	header ul li {
+		margin-right: 20px;
+	}
+	header ul li a {
+		font-size: 20px;
+	}
+	header ul li a span {
+		display: none;
+	}
+	main {
+		width: 100%;
+		margin-left: 0px;
+	}
+	main section article {
+		width: 25%;
+	}
+}
+
+@media screen and (max-width:899px) { /* 900 미만... */
+	header ul {
+		left: 80%;
+	}
+	main section article {
+		width: 33.333%;
+	}
+}
+
+@media screen and (max-width:679px) { /* 680 미만... 일일이 수정이라니이 */
+	header ul {
+		left: 70%
+	}
+	main section article {
+		width: 50%;
+	}
+}
+
+@media screen and (max-width:539px) { /* 540 미만... 일일이 수정이라니이 */
+	header ul {
+		display: none;
+	}
+	main ul {
+		margin-right: 0px;
+		box-sizing: border-box;
+		padding: 0px 13px;
+	}
+	main ul li {
+		margin-right: 2%;
+		width: 32%;
+	}
+	main ul li:nth-of-type(1) {
+		margin-right: 0%;
+	}
+	main section article {
+		width: 100%;
+	}
+}
